@@ -108,13 +108,13 @@ public class lexer {
             String chr = src.get(0);
 
             // Single character tokens
-            if (chr == "("){
+            if (chr.equals("(")){
                 tokens.add(new Token(src.shiftVals() , TokenType.OpenParen));
-            } else if (chr == ")"){
+            } else if (chr.equals(")")){
                 tokens.add(new Token(src.shiftVals() , TokenType.CloseParen));
             } else if (contains(BINARYOPS, chr)){
                 tokens.add(new Token(src.shiftVals() , TokenType.BinaryOperator));
-            } else if (chr == "="){
+            } else if (chr.equals("=")){
                 tokens.add(new Token(src.shiftVals() , TokenType.Equals));
             }
 
@@ -141,7 +141,8 @@ public class lexer {
                 } else {
                     // catch-all for unrecognised symbols
                     System.err.println("Unauthorised character found: " + chr);
-                    System.exit(1);
+                    src.shiftVals();
+                    //System.exit(1);
                 }
 
             }

@@ -59,12 +59,15 @@ public class lexterTest {
 
     @Test
     public void lexerTest(){
-        String source = "1 + 2";
+        String source = "let x = 1 + 2";
         lexer lex = new lexer();
 
         ArrayList<Token> res = lex.tokenize(source);
 
         ArrayList<Token> expRes = new ArrayList<Token>();
+        expRes.add(new Token("let", TokenType.Let));
+        expRes.add(new Token("x", TokenType.Identifier));
+        expRes.add(new Token("=", TokenType.Equals));
         expRes.add(new Token("1", TokenType.Number));
         expRes.add(new Token("+", TokenType.BinaryOperator));
         expRes.add(new Token("2", TokenType.Number));
