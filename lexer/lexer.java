@@ -1,11 +1,15 @@
-package lexer;
+package Lexer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import dataTypes.ShiftableArray;
+import Lexer.Types.ShiftableArray;
+import Lexer.Types.Token;
+import Lexer.Types.TokenType;
 
-public class lexer {
+
+
+public class Lexer {
 
     /**
      * Checks to see if an array contains the given value
@@ -141,14 +145,14 @@ public class lexer {
                 } else {
                     // catch-all for unrecognised symbols
                     System.err.println("Unauthorised character found: " + chr);
-                    src.shiftVals();
-                    //System.exit(1);
+                    System.exit(1);
                 }
 
             }
 
         }
-
+        
+        tokens.add(new Token("EOF", TokenType.EOF));
         return tokens;
     }
 }

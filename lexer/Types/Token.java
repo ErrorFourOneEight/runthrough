@@ -1,4 +1,4 @@
-package lexer;
+package Lexer.Types;
 
 public class Token{
     public String value;

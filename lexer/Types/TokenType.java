@@ -1,4 +1,4 @@
-package lexer;
+package Lexer.Types;
 
 public enum TokenType{
     Number,
@@ -10,4 +10,5 @@ public enum TokenType{
     BinaryOperator,
     
     Let,
+    EOF,
 }

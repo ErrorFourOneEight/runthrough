@@ -1,9 +1,12 @@
-package lexer;
+package Lexer;
 import java.util.ArrayList;
 
 import org.junit.*;
 
-import dataTypes.ShiftableArray;
+import Lexer.Types.ShiftableArray;
+import Lexer.Types.Token;
+import Lexer.Types.TokenType;
+
 
 public class lexterTest {
     @Test
@@ -21,22 +24,22 @@ public class lexterTest {
 
     @Test
     public void testIsInt(){
-        Assert.assertEquals(lexer.isInt("1234"), true);
-        Assert.assertEquals(lexer.isInt("123a"), false);
+        Assert.assertEquals(Lexer.isInt("1234"), true);
+        Assert.assertEquals(Lexer.isInt("123a"), false);
 
     }
 
     @Test
     public void testIsAlpha(){
-        Assert.assertEquals(lexer.isAlpha("Hello"), true);
-        Assert.assertEquals(lexer.isAlpha("no way!"), false);
+        Assert.assertEquals(Lexer.isAlpha("Hello"), true);
+        Assert.assertEquals(Lexer.isAlpha("no way!"), false);
 
     }
 
     @Test
     public void testIsSkippable(){
-        Assert.assertEquals(lexer.isSkippable(" \n \t"), true);
-        Assert.assertEquals(lexer.isSkippable(" o "), false);
+        Assert.assertEquals(Lexer.isSkippable(" \n \t"), true);
+        Assert.assertEquals(Lexer.isSkippable(" o "), false);
 
     }
 
@@ -46,7 +49,7 @@ public class lexterTest {
         ShiftableArray<String> src = new ShiftableArray<>();
         src.add("A"); src.add("b"); src.add("1");
 
-        Assert.assertEquals("Ab",lexer.buildStr(src));
+        Assert.assertEquals("Ab",Lexer.buildStr(src));
     }
 
     @Test
@@ -54,13 +57,13 @@ public class lexterTest {
         ShiftableArray<String> src = new ShiftableArray<>();
         src.add("1"); src.add("2"); src.add("G");
 
-        Assert.assertEquals("12",lexer.buildNum(src));
+        Assert.assertEquals("12",Lexer.buildNum(src));
     }
 
     @Test
     public void lexerTest(){
         String source = "let x = 1 + 2";
-        lexer lex = new lexer();
+        Lexer lex = new Lexer();
 
         ArrayList<Token> res = lex.tokenize(source);
 
@@ -71,8 +74,10 @@ public class lexterTest {
         expRes.add(new Token("1", TokenType.Number));
         expRes.add(new Token("+", TokenType.BinaryOperator));
         expRes.add(new Token("2", TokenType.Number));
+        expRes.add(new Token("EOF", TokenType.EOF));
 
-        System.out.println(lexer.showTokens(res));
+
+        System.out.println(Lexer.showTokens(res));
 
         while (res.size() > 0){
             Assert.assertEquals(res.get(0), expRes.get(0));
